@@ -22,3 +22,15 @@ after_success:
   - docker push bartek199305/multi-nginx
   - docker push bartek199305/multi-server
   - docker push bartek199305/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: eu-west-2
+  app: multi-docker
+  env: Mulitdocker-env
+  bucket_name: elasticbeanstalk-eu-west-2-276878536813
+  bucket_path: docker_multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secure: $AWS_SECRET_KEY
